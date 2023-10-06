@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="destination">
     <section>
       <h2>{{ destination.name }}</h2>
       <a href=""></a>

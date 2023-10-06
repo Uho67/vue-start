@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="experience">
     <h2>{{ experience.name }}</h2>
     <img
       :src="getImage(experience.image ?? 'waikiki-beach.jpg')"
