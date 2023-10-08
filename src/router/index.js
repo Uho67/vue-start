@@ -9,6 +9,17 @@ const routes = [
     component: HomeView,
   },
   {
+    path: "/protected",
+    name: "protected",
+    component: () => import("@/views/ProtectedPage.vue"),
+    meta: { requireAuth: true },
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/LoginPage.vue"),
+  },
+  {
     beforeEnter: (to, from) => {
       const destinationTo = sourceData.destinations.find(
         (destination) => destination.id === parseInt(to.params.id)
@@ -48,6 +59,28 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
   linkActiveClass: "my-custom-active-link",
+  scrollBehavior(to, from, savedPosition) {
+    return (
+      savedPosition ||
+      new Promise((resolve) => {
+        setTimeout(() => resolve({ top: 0, behaviour: "smooth" }), 300);
+      })
+    );
+    // return {
+    //   top: null,
+    //   left: null,
+    //   behavior: null,
+    // };
+  },
+});
+
+router.beforeEach((to, from) => {
+  if (to.meta.requireAuth && !window.user) {
+    debugger;
+    router.push({
+      name: "login",
+    });
+  }
 });
 
 export default router;

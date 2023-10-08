@@ -15,6 +15,13 @@
       }"
       >{{ destination.name }}</router-link
     >
+    <router-link
+      :to="{
+        name: 'protected',
+      }"
+    >
+      <h2>Protected</h2>
+    </router-link>
   </div>
 </template>
 <script>
