@@ -11,14 +11,15 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const userName = ref("");
 const password = ref("");
 const router = useRouter();
+const route = useRoute();
 const submitLogin = () => {
-  debugger;
   window.user = userName.value;
-  router.push({ name: "protected" });
+  const newPath = route.query?.redirectTo ?? "protected";
+  router.push({ name: newPath });
 };
 </script>

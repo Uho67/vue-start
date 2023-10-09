@@ -3,6 +3,9 @@
     <h1>Protected Page</h1>
     <h2>Hello {{ userName }}</h2>
     <button class="btn" @click="logout">Logout</button>
+    <router-link :to="{ name: 'invoices' }"
+      ><button class="btn">Invoices</button></router-link
+    >
   </div>
 </template>
 <script setup>

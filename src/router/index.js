@@ -9,6 +9,12 @@ const routes = [
     component: HomeView,
   },
   {
+    path: "/invoices",
+    name: "invoices",
+    component: () => import("@/views/InvoicesView.vue"),
+    meta: { requireAuth: true },
+  },
+  {
     path: "/protected",
     name: "protected",
     component: () => import("@/views/ProtectedPage.vue"),
@@ -79,6 +85,9 @@ router.beforeEach((to, from) => {
     debugger;
     router.push({
       name: "login",
+      query: {
+        redirectTo: to.name,
+      },
     });
   }
 });

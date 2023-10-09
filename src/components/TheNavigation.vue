@@ -1,5 +1,11 @@
 <template>
   <div id="nav">
+    <app-link :to="{ name: 'invoices' }">
+      <h2>Test internal link</h2>
+    </app-link>
+    <app-link :to="externalLink">
+      <h2>Test external link</h2>
+    </app-link>
     <router-link to="/">
       <h2>Vue School</h2>
     </router-link>
@@ -24,14 +30,12 @@
     </router-link>
   </div>
 </template>
-<script>
+<script setup>
+import AppLink from "@/components/AppLink.vue";
 import sourceData from "@/data.json";
+import { ref } from "vue";
 
-export default {
-  data() {
-    return {
-      destinations: sourceData.destinations,
-    };
-  },
-};
+const destinations = ref(sourceData.destinations);
+const externalLink =
+  "https://router.vuejs.org/guide/advanced/navigation-guards.html";
 </script>
